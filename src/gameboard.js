@@ -26,6 +26,7 @@ export default class Gameboard{
             this.board.push(rowAdd)
         }
         this.ship = []
+        this.size = size
     }
     receiveAttack(row,column){
         // tested. be carfeul Do not use .board but rather gameBoardTest2.receiveAttack(0,1)
@@ -36,12 +37,19 @@ export default class Gameboard{
         this.board[row][column].hit =true
     }
     addShip(newShip, coordinates){
+        //check if the coordinates are empty
         for (const coordinate of coordinates){
             let row = coordinate[0]
             let column = coordinate[1]
-            if (this.board[row][column].shipPoint === null){
-                this.board[row][column].shipPoint = newShip
+            if (this.board[row][column].shipPoint != null){
+                return
             }
+        }
+        //all ok now we put the ship
+        for (const coordinate of coordinates){
+            let row = coordinate[0]
+            let column = coordinate[1]
+            this.board[row][column].shipPoint = newShip
         }
         this.ship.push(newShip)
     }

@@ -1,0 +1,83 @@
+
+:root {
+  --tile: 32px;
+  --line: #b9c1cc;
+  --tile-bg: #f2f5f9;
+  --tile-bg-hover: #e7edf5;
+}
+
+.boards {
+  display: flex;            /* side by side */
+  gap: 2rem;                /* space between */
+  justify-content: center;  /* center horizontally */
+  margin-top: 2rem;
+}
+
+.board {
+  text-align: center;       /* center the label over the grid */
+}
+
+.board h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--size), var(--tile));
+  grid-template-rows: repeat(var(--size), var(--tile));
+  gap: 1px; /* spacing between tiles */
+  background-color: var(--line);
+  width: fit-content;
+}
+
+.cell {
+  width: var(--tile);
+  height: var(--tile);
+  background: var(--tile-bg);
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.06s;
+}
+
+.cell:hover {
+  background: var(--tile-bg-hover);
+  transform: scale(1.02);
+}
+
+/* ship cell (only shown on player's board, not enemy) */
+.cell.ship {
+  background: steelblue;       /* blue tile */
+  border: 1px solid #2d5a91;
+}
+
+/* cell that was attacked and hit */
+.cell.hit {
+  background: crimson;         /* strong red */
+  position: relative;
+  color: white;
+}
+
+.cell.hit::after {
+  content: "✕";                /* cross symbol */
+  font-size: 1rem;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cell.ship.hit {
+  background: darkred;        /* deeper red to show it's a ship hit */
+}
+
+.cell.ship.hit::after {
+  content: "💥";              /* explosion icon instead of ✕ */
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
