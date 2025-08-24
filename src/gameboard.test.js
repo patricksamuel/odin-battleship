@@ -77,6 +77,22 @@ test('test allSunk', () => {
 });
 
 
+test('test allSunk', () => {
+    let gameBoardTest2 = new Gameboard(2)
+    let testShip = new Ship(1)
+    let testShip2 = new Ship(1)
+    let testShipcoord =[[0,0],[0,1]]
+    gameBoardTest2.addShip(testShip,testShipcoord)
+    console.log(gameBoardTest2.ship)
+    expect(gameBoardTest2.board).toEqual([
+        [{ row : 0, column : 0, shipPoint : testShip, hit : false},{ row : 0, column : 1, shipPoint : testShip, hit : false}],
+        [{ row : 1, column : 0, shipPoint : null, hit : false},{ row : 1, column : 1, shipPoint : null, hit : false}]
+    ]
+    );
+    expect(gameBoardTest2.allSunk()).toBe(false);
+});
+
+
 
 
 

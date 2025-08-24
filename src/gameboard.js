@@ -54,15 +54,18 @@ export default class Gameboard{
         this.ship.push(newShip)
     }
     allSunk(){
+        // function tested
         let result = false
-        if (this.ship = []){
+        if (this.ship.length === 0){
+            
             return true
         }
         for (const shipMember of this.ship){
             if (shipMember.isSunk() === false){
-                return true
+                return result
             }
             
         }
+        return true
     }
 }
